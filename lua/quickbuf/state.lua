@@ -129,7 +129,7 @@ local function pin_buffer(bufnr, update_persist)
         M.pinned_order[#M.pinned_order + 1] = bufnr
     end
 
-    if update_persist then
+    if update_persist and persistence_enabled() then
         add_persist_path(buffer_path(bufnr))
     end
 
@@ -137,7 +137,7 @@ local function pin_buffer(bufnr, update_persist)
 end
 
 local function unpin_buffer(bufnr, update_persist)
-    if update_persist then
+    if update_persist and persistence_enabled() then
         remove_persist_path(buffer_path(bufnr))
     end
     M.pinned[bufnr] = nil
